@@ -1,0 +1,53 @@
+.row {
+
+    @mixin clearfix; /*Ho inserito il blocco sottostante in un mixin e l'ho poi richiamato qui*/
+
+    /*
+    &::after { //Significato: alla fine del row, blocca il float
+        content: "";
+        clear: both;
+        display: table;
+    }
+    */
+
+    &--gutters {
+        padding-right: -65px; /*In questo modo ho tolto il bordo finale di 65px nel blocco del testo, ma sono finito con l'avere una leggera distorsione dei blocchi - vedi L24 - minuto14... per elidere questa situazione, occorre andare a livello wrapper ed impostare l'overflow a hidden*/
+    }
+
+    &--gutters > div { /*Seleziono tutti i figli diretti relativi la classe gutters, quindi i due div che stanno sotto di esso*/
+        padding-right: 65px;
+        /*
+        box-sizing: border-box; /*Questo serve per adattare le due colonne con lo spazio di separazione introdotto tra di essi - in quanto si ha che (33.3% + 66.6% + 65px = +100%) - con questa proprietà si ha un adattamento dei due blocchi a lato - [NB: è meglio inserirlo a livello globale nel global.css]
+        */
+    }
+
+    &__b-margin-until-medium {
+        margin-bottom: 1rem;
+    }
+
+    @mixin atMedium {
+
+        &__b-margin-until-medium {
+            margin-bottom: 0;
+        }
+
+        &__medium-4 {
+            float: left;
+            width: 33.33%;
+        }
+    
+        &__medium-4--larger {
+            width: 37%;
+        }
+
+        &__medium-8 {
+            float: left;
+            width: 66.66%;
+        }
+
+        &__medium-8--smaller {
+            width: 63%;
+        }
+    }
+
+}
